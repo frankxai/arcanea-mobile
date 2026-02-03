@@ -317,13 +317,18 @@ export class AIRouter {
 
   private async initializeProviders() {
     // In a real app, these would come from secure storage
-    const claude = new ClaudeAI('your-claude-api-key');
-    const openai = new OpenAIAI('your-openai-api-key');
-    const gemini = new GeminiAI('your-gemini-api-key');
+    // For now, initialize with placeholder keys that will fail gracefully
+    try {
+      const claude = new ClaudeAI(process.env.ANTHROPIC_API_KEY || '');
+      const openai = new OpenAIAI(process.env.OPENAI_API_KEY || '');
+      const gemini = new GeminiAI(process.env.GOOGLE_API_KEY || '');
 
-    this.providers.set('claude', claude);
-    this.providers.set('openai', openai);
-    this.providers.set('gemini', gemini);
+      this.providers.set('claude', claude);
+      this.providers.set('openai', openai);
+      this.providers.set('gemini', gemini);
+    } catch (error) {
+      console.error('Error initializing AI providers:', error);
+    }
   }
 
   async generateResponse(

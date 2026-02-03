@@ -1,15 +1,25 @@
 import React, { useState, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, PanResponder } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import type { StackNavigationProp } from '@react-navigation/stack';
 import { useTheme } from '../theme';
+import type { RootStackParamList } from '../types';
 
 interface Studio3DProps {
-  navigation: any;
+  navigation?: StackNavigationProp<RootStackParamList>;
 }
 
-export const Studio3DScreen: React.FC<Studio3DProps> = ({ navigation }) => {
+interface SceneObject {
+  id: string;
+  type: string;
+  position: { x: number; y: number };
+}
+
+export const Studio3DScreen: React.FC<Studio3DProps> = ({ navigation: navProp }) => {
+  const navigation = navProp || useNavigation<StackNavigationProp<RootStackParamList>>();
   const { theme } = useTheme();
   const [selectedTool, setSelectedTool] = useState('select');
-  const [objects, setObjects] = useState<Array<{ id: string; type: string; position: { x: number; y: number } }>>([]);
+  const [objects, setObjects] = useState<SceneObject[]>([]);
   const [isDrawing, setIsDrawing] = useState(false);
 
   // Touch gesture handling for mobile
@@ -56,7 +66,7 @@ export const Studio3DScreen: React.FC<Studio3DProps> = ({ navigation }) => {
     { id: 'camera', icon: '📷', label: 'Camera', color: theme.colors.wind },
   ];
 
-  const renderObject = (obj: any) => {
+  const renderObject = (obj: SceneObject) => {
     switch (obj.type) {
       case 'cube':
         return (

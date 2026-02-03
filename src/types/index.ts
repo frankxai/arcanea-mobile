@@ -136,7 +136,7 @@ export interface ArcaneaProject {
     images?: string[];
     videos?: string[];
     audio?: string[];
-    threeD?: any;
+    threeD?: Scene3D;
   };
   tags: string[];
   isPublic: boolean;
@@ -181,8 +181,8 @@ export interface SceneObject {
   position: [number, number, number];
   rotation: [number, number, number];
   scale: [number, number, number];
-  geometry?: any;
-  material?: any;
+  geometry?: Record<string, unknown>;
+  material?: Record<string, unknown>;
   children?: SceneObject[];
 }
 
@@ -224,7 +224,7 @@ export interface EnvironmentSettings {
 }
 
 // API Response Types
-export interface APIResponse<T = any> {
+export interface APIResponse<T = unknown> {
   success: boolean;
   data?: T;
   error?: string;
@@ -239,3 +239,20 @@ export interface PaginatedResponse<T> extends APIResponse<T[]> {
     hasMore: boolean;
   };
 }
+
+// Navigation Types
+export type RootStackParamList = {
+  Main: undefined;
+  GuardianSelection: undefined;
+  Chat: { guardian?: GuardianAI };
+  CommunityCreator: undefined;
+  CommunityReview: undefined;
+};
+
+export type MainTabParamList = {
+  Home: undefined;
+  Chat: undefined;
+  Community: undefined;
+  Studio: undefined;
+  Profile: undefined;
+};

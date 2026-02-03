@@ -1,8 +1,9 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StatusBar } from 'expo-status-bar';
+import { View, Text, StyleSheet } from 'react-native';
 import { ThemeProvider } from '../theme';
 
 import { HomeScreenSimple } from '../screens/HomeScreenSimple';
@@ -10,6 +11,7 @@ import { GuardianSelectionSimple } from '../components/guardians/GuardianSelecti
 import { ChatInterfaceSimple } from '../components/chat/ChatInterfaceSimple';
 import { CommunityCreatorScreen } from '../screens/CommunityCreatorScreen';
 import { CommunityReviewSystem } from '../screens/CommunityReviewSystem';
+import { Studio3DScreen } from '../screens/Studio3DScreen';
 import { GuardianAI, AIMessage } from '../types';
 import { TabBarIcon } from '../components/navigation/TabBarIcon';
 
@@ -151,8 +153,12 @@ const StudioScreen: React.FC = () => {
 };
 
 const ProfileScreen: React.FC = () => {
-  const navigation = useNavigation();
-  return <ProfileDashboardScreen navigation={navigation} />;
+  return (
+    <View style={styles.placeholderScreen}>
+      <Text style={styles.placeholderText}>Profile Dashboard</Text>
+      <Text style={styles.placeholderSubtext}>Coming Soon</Text>
+    </View>
+  );
 };
 
 export const AppNavigatorCommunity: React.FC = () => {
@@ -227,3 +233,22 @@ export const AppNavigatorCommunity: React.FC = () => {
     </ThemeProvider>
   );
 };
+
+const styles = StyleSheet.create({
+  placeholderScreen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FAFAFA',
+  },
+  placeholderText: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: '#212121',
+    marginBottom: 8,
+  },
+  placeholderSubtext: {
+    fontSize: 16,
+    color: '#757575',
+  },
+});
