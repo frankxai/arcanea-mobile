@@ -50,5 +50,7 @@
     "react-test-renderer": "19.0.0",
     "typescript": "~5.8.3"
   },
-  "private": true
+  "private": true,
+  "license": "FSL-1.1-ALv2",
+  "author": "Frank Riemer <frank@frankx.ai>"
 }
