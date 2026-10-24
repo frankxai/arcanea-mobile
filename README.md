@@ -37,20 +37,27 @@ cd arcanea-mobile
 npm install
 
 # Start the development server
-expo start
+npm start
 ```
 
 ### Running on Devices
 
 ```bash
 # iOS
-expo start --ios
+npm run ios
 
 # Android
-expo start --android
+npm run android
 
 # Web (for testing)
-expo start --web
+npm run web
+```
+
+### Testing
+
+```bash
+# Run tests
+npm test
 ```
 
 ## 📱 App Structure
@@ -68,23 +75,6 @@ app/
 components/              # Reusable components
 assets/                  # Images, fonts, etc.
 constants/               # App constants
-```
-
-## 🏗️ Build & Deploy
-
-### Development Build
-```bash
-eas build --platform all --profile development
-```
-
-### Production Build
-```bash
-eas build --platform all --profile production
-```
-
-### App Store Submission
-```bash
-eas submit --platform all
 ```
 
 ## 🔗 Related Repositories
