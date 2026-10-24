@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from '@expo/vector-icons';
+import { ComponentProps } from 'react';
 
 import { useColorScheme } from '@/components/useColorScheme';
 
@@ -22,7 +23,9 @@ interface GeneratedImage {
   createdAt: Date;
 }
 
-const STYLE_PRESETS = [
+type FontAwesomeIconName = ComponentProps<typeof FontAwesome>['name'];
+
+const STYLE_PRESETS: { id: string; name: string; icon: FontAwesomeIconName }[] = [
   { id: 'photorealistic', name: 'Photorealistic', icon: 'camera' },
   { id: 'digital-art', name: 'Digital Art', icon: 'paint-brush' },
   { id: 'anime', name: 'Anime', icon: 'user' },
@@ -142,7 +145,7 @@ export default function LuminaScreen() {
                 }`}
               >
                 <FontAwesome
-                  name={style.icon as any}
+                  name={style.icon}
                   size={24}
                   color={
                     selectedStyle === style.id
