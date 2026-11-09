@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from '@expo/vector-icons';
+import { ComponentProps } from 'react';
 import { Video } from 'expo-av';
 
 import { useColorScheme } from '@/components/useColorScheme';
@@ -25,7 +26,9 @@ interface GeneratedVideo {
   createdAt: Date;
 }
 
-const VIDEO_STYLES = [
+type FontAwesomeIconName = ComponentProps<typeof FontAwesome>['name'];
+
+const VIDEO_STYLES: { id: string; name: string; icon: FontAwesomeIconName }[] = [
   { id: 'cinematic', name: 'Cinematic', icon: 'film' },
   { id: 'animation', name: 'Animation', icon: 'play-circle' },
   { id: 'documentary', name: 'Documentary', icon: 'video-camera' },
@@ -204,7 +207,7 @@ export default function KinetixScreen() {
                 }`}
               >
                 <FontAwesome
-                  name={style.icon as any}
+                  name={style.icon}
                   size={24}
                   color={
                     selectedStyle === style.id
